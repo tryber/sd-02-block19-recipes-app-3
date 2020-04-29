@@ -31,7 +31,6 @@ const Receitas = () => {
 
   useEffect(() => {
     setRequestInitialPage([]);
-    setIsFetching(true);
     setDrinkOrMeal(resultsRandom);
   }, [window.location.href]);
   if (requestInitialPage === undefined) return (<h1>Nenhum Resultado</h1>);

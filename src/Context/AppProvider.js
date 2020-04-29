@@ -9,10 +9,12 @@ const verify = (
   requestinitialpage,
   setrequestinitialpage,
   setstopfetching,
+  setIsFetching
 ) => {
   if (!condition) return setnoresults(true);
   if (condition.length > 1) {
     setstopfetching(true);
+    setIsFetching(false);
   }
   setrequestinitialpage([...condition, ...requestinitialpage]);
   return setstopfetching(false);
@@ -23,7 +25,7 @@ export default function AppProvider({ children }) {
   const [copy, setCopy] = useState([]);
   const [visibleSearch, setVisibleSearch] = useState(false);
   const [fetchError, setFetchError] = useState('');
-  const [isFetching, setIsFetching] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
   const [arrayCategory, setArrayCategory] = useState([]);
   const [stopFetching, setStopFetching] = useState(false);
   const [noResults, setNoResults] = useState(false);
@@ -31,13 +33,15 @@ export default function AppProvider({ children }) {
 
   const successDrinkOrMeal = (results) => {
     const condition = results.meals || results.drinks;
-
+    console.log(results)
     verify(
       condition,
       setNoResults,
       requestInitialPage,
       setRequestInitialPage,
       setStopFetching,
+    setIsFetching
+
     );
   };
 
@@ -59,7 +63,10 @@ export default function AppProvider({ children }) {
     }
     if (requestInitialPage.length < 12 && requestInitialPage.length > 0) {
       setDrinkOrMeal(resultsRandom);
+      return;
     }
+    setIsFetching(false);
+    
   }, [requestInitialPage]);
 
 
