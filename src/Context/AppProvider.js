@@ -159,6 +159,10 @@ export default function AppProvider({ children }) {
       }, failDrinkOrMeal)
   );
 
+  const searchCountry = (paramRequest) => {
+    setNoResults(false);
+    apiRequest(paramRequest).then(successSearch, failDrinkOrMeal);
+  };
 
   const defineSearch = (input, searchCriteria) => {
     categorySearch(
@@ -201,6 +205,7 @@ export default function AppProvider({ children }) {
     searchForIngredient,
     setStopFetching,
     stopFetching,
+    searchCountry,
   };
 
   return (

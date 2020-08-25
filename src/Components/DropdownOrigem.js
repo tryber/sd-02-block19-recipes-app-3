@@ -4,13 +4,13 @@ import RecipesContext from '../Context';
 const DropdownOrigem = () => {
   const { origin,
     visibleSearch,
-    searchResults,
+    searchCountry,
     copy,
     setRequestInitialPage,
   } = useContext(RecipesContext);
   const selectedOrigin = (e) => {
     if (e === '') setRequestInitialPage([...copy]);
-    else searchResults(e);
+    else searchCountry(e);
   };
 
   return !visibleSearch &&

@@ -49,7 +49,7 @@ const renderDebounce = (searchCriteria, inputChange, input) => (
     />
   </div>
 );
-const arrayPName = ['/explorar', '/explorar/comidas', '/explorar/bebidas'];
+const arrayPName = ['/explorar', '/explorar/comidas', '/explorar/bebidas', '/explorar/bebidas/ingredientes', '/explorar/comidas/ingredientes'];
 export default function Header() {
   const [searchCriteria, setSearchCriteria] = useState('');
   const [input, setInput] = useState('');
@@ -72,7 +72,7 @@ export default function Header() {
       <div className="Header_Search">
         {pageName === 'Explorar Origem' && window.location.href.includes('comidas')
           ? <DropdownOrigem />
-          : !arrayPName.includes(window.location.pathname) && <CategoryBar />
+          : !window.location.pathname.match(/explorar/) && <CategoryBar />
         }
         {(visibleSearch && !arrayPName.includes(window.location.pathname)) && (
           <div> {renderDebounce(searchCriteria, inputChange, input)}

@@ -102,6 +102,7 @@ const DetailsIngredients = () => {
     checkboxMark(foodDetail, isChecked);
   }, [isChecked]);
 
+  useEffect(() => () => setIsChecked([]), []);
   return (
     <div className="ingredientContainer">
       {isIngredient
